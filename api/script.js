@@ -537,6 +537,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowRight') document.getElementById('btn-next-specimen')?.click();
   });
 
-  // Initial Load: Bulbasaur (#1)
-  loadPokemon(1);
+  // Check URL parameters for specific pokemon (e.g. ?pokemon=pikachu)
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedPokemon = urlParams.get('pokemon');
+  if (requestedPokemon) {
+    loadPokemon(requestedPokemon);
+  } else {
+    // Initial Load: Bulbasaur (#1)
+    loadPokemon(1);
+  }
 });

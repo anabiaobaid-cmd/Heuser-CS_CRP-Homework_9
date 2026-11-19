@@ -136,7 +136,7 @@ async function inspectPokemonModal(identifier) {
           <button type="button" class="action-btn btn-grad-1" style="flex: 1;" onclick="saveToFavorites('${p.name}', ${p.id}, '${artwork}')">
             ❤️ Save to Collection
           </button>
-          <a href="${window.location.protocol === 'file:' ? '../api/index.html' : '/api'}" class="action-btn btn-grad-3" style="flex: 1; text-align: center;">
+          <a href="../api/index.html?pokemon=${encodeURIComponent(p.name)}" class="action-btn btn-grad-3" style="flex: 1; text-align: center;">
             ⚡ Inspect in Pokédex
           </a>
         </div>
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('')}
           </div>
           <div style="margin-top: 1.5rem; text-align: center;">
-            <a href="${window.location.protocol === 'file:' ? '../api/index.html' : '/api'}" class="action-btn btn-grad-3">Open Full Pokédex Search</a>
+            <a href="../api/index.html" class="action-btn btn-grad-3">Open Full Pokédex Search</a>
           </div>
         `;
       } catch (e) {
