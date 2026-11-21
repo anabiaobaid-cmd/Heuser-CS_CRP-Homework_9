@@ -6,9 +6,13 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
-# Root / Homepage
+# Root / Homepage — redirect to /home/ so relative paths (style.css, script.js) resolve correctly
 @app.route("/")
 def index():
+    return redirect("/home/", code=302)
+
+@app.route("/home/")
+def home_index():
     return send_from_directory(os.path.join(BASE_DIR, "home"), "index.html")
 
 @app.route("/home/<path:filename>")

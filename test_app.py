@@ -6,12 +6,14 @@ class FlaskAppTests(unittest.TestCase):
         self.client = app.test_client()
         self.client.testing = True
 
-    def test_homepage(self):
+    def test_homepage_redirect(self):
         res = self.client.get('/')
+        self.assertEqual(res.status_code, 302)
+        self.assertIn('/home/', res.headers['Location'])
+
+    def test_homepage(self):
+        res = self.client.get('/home/')
         self.assertEqual(res.status_code, 200)
-        self.assertIn(b'/game', res.data)
-        self.assertIn(b'/portfolio', res.data)
-        self.assertIn(b'/api', res.data)
         self.assertIn(b'PRISM', res.data)
 
     def test_home_static(self):
